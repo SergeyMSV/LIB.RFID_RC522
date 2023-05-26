@@ -44,7 +44,7 @@ MFRC522::StatusCode MFRC522Extended::PICC_Select(	Uid *uid,			///< Pointer to Ui
 	byte bufferUsed;				// The number of bytes used in the buffer, ie the number of bytes to transfer to the FIFO.
 	byte rxAlign;					// Used in BitFramingReg. Defines the bit position for the first bit received.
 	byte txLastBits;				// Used in BitFramingReg. The number of valid bits in the last transmitted byte. 
-	byte *responseBuffer;
+	byte *responseBuffer = nullptr;
 	byte responseLength;
 	
 	// Description of buffer structure:
@@ -823,7 +823,7 @@ MFRC522::StatusCode MFRC522Extended::TCL_Transceive(TagInfo *tag, byte *sendData
 	// Swap block number on success
 	tag->blockNumber = !tag->blockNumber;
 
-	if (backData && (backLen > 0)) {
+	if (backData && backLen) {
 		if (*backLen < in.inf.size)
 			return STATUS_NO_ROOM;
 
@@ -846,7 +846,7 @@ MFRC522::StatusCode MFRC522Extended::TCL_Transceive(TagInfo *tag, byte *sendData
 		if (result != STATUS_OK)
 			return result;
 
-		if (backData && (backLen > 0)) {
+		if (backData && backLen) {
 			if ((*backLen + ackDataSize) > totalBackLen)
 				return STATUS_NO_ROOM;
 
