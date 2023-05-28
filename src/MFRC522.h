@@ -10,6 +10,8 @@
 #ifndef MFRC522_h
 #define MFRC522_h
 
+#include "types.h"
+
 #include "require_cpp11.h"
 #include "deprecated.h"
 // Enable integer limits
