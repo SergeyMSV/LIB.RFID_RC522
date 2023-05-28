@@ -1448,18 +1448,13 @@ void MFRC522::PICC_DumpDetailsToSerial(Uid *uid	///< Pointer to Uid struct retur
 	// UID
 	Serial.print(F("Card UID:"));
 	for (byte i = 0; i < uid->size; i++) {
-		if(uid->uidByte[i] < 0x10)
-			Serial.print(F(" 0"));
-		else
-			Serial.print(F(" "));
+		Serial.print(F(" "));
 		Serial.print(uid->uidByte[i], HEX);
 	} 
 	Serial.println();
 	
 	// SAK
 	Serial.print(F("Card SAK: "));
-	if(uid->sak < 0x10)
-		Serial.print(F("0"));
 	Serial.println(uid->sak, HEX);
 	
 	// (suggested) PICC type
@@ -1600,10 +1595,7 @@ void MFRC522::PICC_DumpMifareClassicSectorToSerial(Uid *uid,			///< Pointer to U
 		}
 		// Dump data
 		for (byte index = 0; index < 16; index++) {
-			if(buffer[index] < 0x10)
-				Serial.print(F(" 0"));
-			else
-				Serial.print(F(" "));
+			Serial.print(F(" "));
 			Serial.print(buffer[index], HEX);
 			if ((index % 4) == 3) {
 				Serial.print(F(" "));
@@ -1689,10 +1681,7 @@ void MFRC522::PICC_DumpMifareUltralightToSerial() {
 			Serial.print(F("  "));
 			for (byte index = 0; index < 4; index++) {
 				i = 4 * offset + index;
-				if(buffer[i] < 0x10)
-					Serial.print(F(" 0"));
-				else
-					Serial.print(F(" "));
+				Serial.print(F(" "));
 				Serial.print(buffer[i], HEX);
 			}
 			Serial.println();
