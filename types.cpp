@@ -22,7 +22,9 @@ void tSerial::print(byte val, DigitType stat)
 {
 	if (stat == HEX)
 	{
+		std::ios_base::fmtflags f(std::cout.flags());
 		std::cout << std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(val);
+		std::cout.flags(f);
 		return;
 	}
 
