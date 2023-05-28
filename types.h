@@ -5,6 +5,7 @@
 #include <chrono>
 #include <memory>
 #include <string>
+#include <vector>
 
 #define F(x) x
 
@@ -18,6 +19,8 @@ extern std::chrono::steady_clock::time_point g_time_start;
 
 typedef unsigned char byte;
 typedef char __FlashStringHelper;
+
+std::vector<uint8_t> SPITransfer(const std::vector<uint8_t>& tx);
 
 enum DigitType
 {
@@ -64,20 +67,6 @@ enum GPIOState
 
 void digitalWrite(byte pin, GPIOState state);
 GPIOState digitalRead(byte pin);
-
-struct SPISettings
-{
-	SPISettings(int, int, int) {}
-};
-
-struct tSPI
-{
-	void beginTransaction(SPISettings) {}
-	byte transfer(byte val);
-	void endTransaction() {}
-};
-
-extern tSPI SPI;
 
 //Returns the number of milliseconds passed since the Arduino board began running the current program.This number will overflow(go back to zero), after approximately 50 days.
 uint32_t millis();

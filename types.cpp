@@ -5,7 +5,6 @@
 #include <thread>
 
 tSerial Serial;
-tSPI SPI;
 
 std::chrono::steady_clock::time_point g_time_start;
 
@@ -88,12 +87,6 @@ GPIOState digitalRead(byte pin)
 		return g_GPIO_Rst;
 
 	return GPIOState::LOW;
-}
-
-byte SPITransfer(byte val);
-byte tSPI::transfer(byte val)
-{
-	return SPITransfer(val);
 }
 
 uint32_t millis()
