@@ -665,7 +665,9 @@ MFRC522::StatusCode MFRC522Extended::TCL_Transceive(PcbBlock *send, PcbBlock *ba
 	MFRC522::StatusCode result;
 	byte inBuffer[FIFO_SIZE];
 	byte inBufferSize = FIFO_SIZE;
-	byte outBuffer[send->inf.size + 5]; // PCB + CID + NAD + INF + EPILOGUE (CRC)
+	//byte outBuffer[send->inf.size + 5]; // PCB + CID + NAD + INF + EPILOGUE (CRC)
+	std::unique_ptr<byte[]> outBufferPtr(new byte[3]);
+	byte* outBuffer = outBufferPtr.get();
 	byte outBufferOffset = 1;
 	byte inBufferOffset = 1;
 
